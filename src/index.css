@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--md-primary);
+  --color-on-primary: var(--md-on-primary);
+  --color-primary-container: var(--md-primary-container);
+  --color-on-primary-container: var(--md-on-primary-container);
+  --color-background: var(--md-background);
+  --color-surface: var(--md-surface);
+  --color-surface-container: var(--md-surface-container);
+  --color-surface-container-low: var(--md-surface-container-low);
+  --color-surface-container-lowest: var(--md-surface-container-lowest);
+  --color-surface-variant: var(--md-surface-variant);
+  --color-on-surface: var(--md-on-surface);
+  --color-on-surface-variant: var(--md-on-surface-variant);
+  --color-outline: var(--md-outline);
+  --color-outline-variant: var(--md-outline-variant);
+  --color-tertiary: var(--md-tertiary);
+  --color-tertiary-container: var(--md-tertiary-container);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Geist', monospace;
+}
+
+/* ── Dark theme (default) ── */
+:root {
+  --md-primary: #c2c1ff;
+  --md-on-primary: #1800a7;
+  --md-primary-container: #5e5ce6;
+  --md-on-primary-container: #f4f1ff;
+  --md-background: #0e0e0e;
+  --md-surface: #131313;
+  --md-surface-container: #201f1f;
+  --md-surface-container-low: #1c1b1b;
+  --md-surface-container-lowest: #0e0e0e;
+  --md-surface-variant: #353534;
+  --md-on-surface: #e5e2e1;
+  --md-on-surface-variant: #c7c4d7;
+  --md-outline: #918fa0;
+  --md-outline-variant: #464554;
+  --md-tertiary: #aac7ff;
+  --md-tertiary-container: #006dd6;
+
+  --crm-img: url('./assets/crm-dark.png');
+
+  --glass-bg: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-bg-hover: rgba(255,255,255,0.08);
+  --glass-border-hover: rgba(255,255,255,0.20);
+  --glass-shadow-hover: 0 20px 40px rgba(0,0,0,0.4);
+  --radial-primary: rgba(94, 92, 230, 0.15);
+}
+
+/* ── Light theme ── */
+html.light {
+  --md-primary: #4d4ad5;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #e2dfff;
+  --md-on-primary-container: #0c006b;
+  --md-background: #faf9ff;
+  --md-surface: #faf9ff;
+  --md-surface-container: #efedf6;
+  --md-surface-container-low: #f5f3fc;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-variant: #e5e2f0;
+  --md-on-surface: #1a1b21;
+  --md-on-surface-variant: #47464e;
+  --md-outline: #787680;
+  --md-outline-variant: #c8c5d0;
+  --md-tertiary: #005cbb;
+  --md-tertiary-container: #d6e3ff;
+
+  --crm-img: url('./assets/crm-light.png');
+
+  --glass-bg: rgba(0,0,0,0.02);
+  --glass-border: rgba(0,0,0,0.08);
+  --glass-bg-hover: rgba(0,0,0,0.05);
+  --glass-border-hover: rgba(0,0,0,0.15);
+  --glass-shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
+  --radial-primary: rgba(77, 74, 213, 0.08);
+}
+
+/* ── Global ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--md-background);
+  color: var(--md-on-surface);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ── Liquid glass ── */
+.liquid-glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s cubic-bezier(0.4,0,0.2,1),
+              border-color 0.3s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.liquid-glass:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* ── Noise overlay ── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Radial bg ── */
+.radial-bg {
+  background: radial-gradient(circle at 50% -20%, var(--radial-primary) 0%, transparent 60%);
+}
+
+/* ── Primary glow ── */
+.primary-glow {
+  box-shadow: 0 0 20px rgba(94, 92, 230, 0.35);
+}
+
+/* ── Material icons ── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* ── Float animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
